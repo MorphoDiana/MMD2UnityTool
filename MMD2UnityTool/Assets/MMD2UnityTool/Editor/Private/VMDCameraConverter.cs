@@ -112,15 +112,15 @@ public class VMDCameraConverter
 		AnimationCurve fov_curve = ToAnimationCurveWithTangentMode(6, AnimationUtility.TangentMode.Free, fov_keyframes, format.camera_list);
 
 
-		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "localPosition.x"), posX_curve);
-		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "localPosition.y"), posY_curve);
-		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "localPosition.z"), posZ_curve);
-		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "localRotation.x"), rotX_curve);   //采用欧拉角插值方式
-		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "localRotation.y"), rotY_curve);
-		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "localRotation.z"), rotZ_curve);
-		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "localRotation.w"), rotW_curve);
+		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "m_LocalPosition.x"), posX_curve);
+		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "m_LocalPosition.y"), posY_curve);
+		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "m_LocalPosition.z"), posZ_curve);
+		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "m_LocalRotation.x"), rotX_curve);   //采用欧拉角插值方式
+		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "m_LocalRotation.y"), rotY_curve);
+		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "m_LocalRotation.z"), rotZ_curve);
+		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Transform), "m_LocalRotation.w"), rotW_curve);
 
-		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("Distance", typeof(Transform), "localPosition.z"), dis_curve);
+		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("Distance", typeof(Transform), "m_LocalPosition.z"), dis_curve);
 
 		AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("Distance/Camera", typeof(Camera), "field of view"), fov_curve);
 	}
