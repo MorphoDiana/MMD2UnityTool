@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class CameraVmdAgent
@@ -38,6 +39,30 @@ public class CameraVmdAgent
 		
 		AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(animation_clip));
 
-		//AssetDatabase.Refresh();
-	}
+
+
+        GameObject mmdCamera = new GameObject("MMDCamera");
+
+        Animator animator = mmdCamera.AddComponent<Animator>();
+        AnimationClip clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(anima_file);
+        AnimatorController controller = AnimatorController.CreateAnimatorControllerAtPath(Path.Combine(vmd_folder, animation_clip.name + ".controller"));
+        AnimatorState state = controller.AddMotion(clip);
+        animator.runtimeAnimatorController = controller;
+
+        GameObject distance = new GameObject("Distance");
+        distance.transform.parent = mmdCamera.transform;
+
+        GameObject camera = new GameObject("Camera");
+        camera.transform.parent = distance.transform;
+        camera.AddComponent<Camera>();
+
+        camera.transform.rotation = Quaternion.Euler(0, 180, 0);
+
+        string prefabPath = Path.Combine(vmd_folder,"MMDCamera.prefab");
+        PrefabUtility.SaveAsPrefabAsset(mmdCamera, prefabPath);
+
+        GameObject.DestroyImmediate(mmdCamera);
+
+        //AssetDatabase.Refresh();
+    }
 }
